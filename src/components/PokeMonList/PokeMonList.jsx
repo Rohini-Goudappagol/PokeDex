@@ -4,16 +4,21 @@ import './PokeMonList.css'
 import Pokemon from '../PokeMon/Pokemon';
 
 function PokeMonList(){
-
+    const DEFAULT_URL = 'https://pokeapi.co/api/v2/pokemon'
     const[pokemonList, setPokemonList] = useState([]);
-    const[pokedexUrl, setPokedexUrl] = useState('https://pokeapi.co/api/v2/pokemon');
+    const[pokedexUrl, setPokedexUrl] = useState(DEFAULT_URL);
+    const [nextUrl, setNextUrl] = useState(DEFAULT_URL);
+    const [prevUrl, setPrevUrl] = useState(DEFAULT_URL);
 
 
     async function downloadPokemons () {
 
-        const response = await axios.get(pokedexUrl);
+        const response = await axios.get(pokedexUrl ? pokedexUrl : DEFAULT_URL);
 
         const pokemonResults = response.data.results; // array of pokemons
+
+        setNextUrl(response.data.next);
+        setPrevUrl(response.data.previous);
 
         const pokemonPromise = pokemonResults.map((pokemon) => axios.get(pokemon.url));
 
@@ -21,7 +26,6 @@ function PokeMonList(){
 
         const pokemonFinalList = pokemonListData.map( pokemonData =>{
             const pokemon = pokemonData.data;
-            console.log(pokemon.sprites.other.dream_world.front_default)
             return{
                 id : pokemon.id,
                 name : pokemon.name,
@@ -35,7 +39,7 @@ function PokeMonList(){
 
     useEffect(() =>{
         downloadPokemons()
-    }, []);
+    }, [pokedexUrl]);
 
     return(
         <div className='pokemonList-wrapper'>
@@ -45,8 +49,8 @@ function PokeMonList(){
             </div>
 
             <div className='page-controls'>
-                <button>Prev</button>
-                <button>Next</button>
+                <button onClick={()=> setPokedexUrl(prevUrl)}>Prev</button>
+                <button onClick={() => setPokedexUrl(nextUrl)}>Next</button>
             </div>
            
             <div className='pokemon-list'>

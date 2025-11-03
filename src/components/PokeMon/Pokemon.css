@@ -7,6 +7,7 @@
   margin: 1rem;
   display: flex;
   flex-direction: column;
+  flex-basis:25%;
   align-items: center;
   justify-content: flex-start; /* keep content top-aligned */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
@@ -27,9 +28,11 @@
   color: #3b3a30;
   font-weight: 600;
   margin-bottom: 10px;
-  letter-spacing: 1px;
+  letter-spacing: 5px;
 }
-
+.link{
+  text-decoration: none;
+}
 .pokemon-card img {
   width: 120px;
   height: 120px;
@@ -38,7 +41,9 @@
   border: none; /* ensure no border */
   box-shadow: none; /* remove any image shadow */
 }
-
+.pokemon-card:hover{
+    background-color: rgb(234, 205, 130);
+}
 body {
   background-color: #f4e6d8; /* page background */
 }
