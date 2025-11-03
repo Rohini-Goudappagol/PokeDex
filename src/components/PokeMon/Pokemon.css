@@ -1,0 +1,44 @@
+.pokemon-card {
+  background-color: #f8f3e8; /* soft beige */
+  border: 1px solid #d1c7b8;
+  border-radius: 15px;
+  width: 220px;
+  height: 250px;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* keep content top-aligned */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  padding: 1rem;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+.pokemon-card h3 {
+  text-transform: lowercase;
+  font-size: 18px;
+  color: #3b3a30;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.pokemon-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-top: 5px;
+  border: none; /* ensure no border */
+  box-shadow: none; /* remove any image shadow */
+}
+
+body {
+  background-color: #f4e6d8; /* page background */
+}
